@@ -169,6 +169,14 @@ img {
   margin: 3rem 0;
 }
 
+.mb-50 {
+  margin-bottom: 70px;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
 /* Grid */
 .grid-2 {
   display: grid;

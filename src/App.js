@@ -9,6 +9,7 @@ import DashboardScreen from './screens/DashboardScreen';
 import Alerts from './components/Alert';
 
 
+
     function App() {
       return (
         <HotelState>

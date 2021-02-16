@@ -10,3 +10,9 @@ export const SET_LOADING = 'LOGIN_FAIL';
 
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+export const ADD_HOTELS = 'ADD_HOTELS';
+export const DETAILS_HOTELS = 'DETAILS_HOTELS';
+export const REVIEWS_HOTELS = 'REVIEWS_HOTELS';
+export const HOTELS_ERROR = 'HOTELS_ERROR';
+

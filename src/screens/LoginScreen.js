@@ -17,11 +17,10 @@ const LoginScreen = (props) => {
         
         useEffect(() => {
           if (isAuthenticated) {
-            
             props.history.push('/dashboard');
           }
       
-          if (error === 'Invalid Credentials') {
+          if (error === 'Unable to log in with provided credentials.') {
             setAlert(error, 'danger');
             
             

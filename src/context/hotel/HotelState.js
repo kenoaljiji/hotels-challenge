@@ -12,8 +12,11 @@ import {
   SET_LOADING,
   LOGOUT,
   CLEAR_ERRORS,
-  USER_LOADED,
-  AUTH_ERROR
+  ADD_HOTELS,
+  DETAILS_HOTEL,
+  REVIEW_HOTEL,
+  FAVORITE_HOTEL,
+  HOTELS_ERROR
 } from '../types'
 
 const HotelState = props => {
@@ -59,7 +62,8 @@ const HotelState = props => {
   const login = async formData => {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+
       }
     };
 
@@ -74,10 +78,37 @@ const HotelState = props => {
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
-        payload: err.response.data.non_field_errors
+        payload: err.response.data.errors
       });
     }
   };
+
+  //Get All Hotels Data
+
+  
+  const allHotels = async () => {
+    setLoading();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${state.user.token}`
+    }
+    };
+    try {
+      const res = await axios.get('http://127.0.0.1:8000/hotel_api/', config);
+
+      dispatch({
+        type: ADD_HOTELS,
+        payload: res.data
+      });
+    } catch (error) {
+      dispatch({
+        type: HOTELS_ERROR,
+        payload: error.response
+      });
+    }
+  };
+
 
   // Logout
   const logout = () => dispatch({ type: LOGOUT });
@@ -95,7 +126,7 @@ const HotelState = props => {
 
     return <HotelContext.Provider 
     value={{
-        hotels: state.users,
+        hotels: state.hotels,
         loading: state.loading,
         token:state.token,
         user: state.user,
@@ -105,7 +136,8 @@ const HotelState = props => {
         register,
         login,
         logout,
-        setLoading
+        setLoading,
+        allHotels
 
     }}
 >

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import AlertContext from '../context/alert/alertContext';
 import HotelContext from '../context/hotel/hotelContext';
+import {useHistory} from 'react-router-dom';
 
 
 
@@ -14,10 +15,12 @@ const RegisterScreen = (props) => {
     const { setAlert } = alertContext;
     const { register, error,isAuthenticated,clearErrors } = hotelContext
 
+    const history = useHistory()
+
     
     useEffect(() => {
       if (isAuthenticated) {
-        props.history.push('/dashboard');
+        history.push('/')
       }
   
       if (error === 'User already exists') {
@@ -32,12 +35,14 @@ const RegisterScreen = (props) => {
     const [user, setUser] = useState({
         username: '',
         email: '',
+        first_name: '',
+        last_name:'',
         password: '',
         password2: ''
       });
 
     
-    const { username, email, password, password2 } = user;
+    const { username, email, first_name, last_name, password, password2 } = user;
 
     const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
@@ -50,8 +55,13 @@ const RegisterScreen = (props) => {
     } else register({
       username,
       email,
+      first_name,
+      last_name,
       password
     });
+    history.push('/')
+    
+
   };
 
     return (
@@ -67,6 +77,28 @@ const RegisterScreen = (props) => {
                 type='text'
                 name='username'
                 value={username}
+                onChange={onChange}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='first_name'>First name</label>
+              <input
+                id='first_name'
+                type='text'
+                name='first_name'
+                value={first_name}
+                onChange={onChange}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='last_name'>Last name</label>
+              <input
+                id='last_name'
+                type='text'
+                name='last_name'
+                value={last_name}
                 onChange={onChange}
                 required
               />

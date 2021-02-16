@@ -6,7 +6,11 @@ import {
     LOGOUT,
     USER_LOADED,
     AUTH_ERROR,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    ADD_HOTELS,
+    SET_LOADING,
+    DETAILS_HOTELS,
+    REVIEWS_HOTELS
   } from '../types'
 
   export default (state, action) => {
@@ -18,13 +22,17 @@ import {
           loading: false,
           user: action.payload
         };
+      case SET_LOADING:
+        return {
+            ...state,
+            loading: true
+        }
       case REGISTER_SUCCESS:
       case LOGIN_SUCCESS:
         localStorage.setItem('token', action.payload.token);
         return {
           ...state,
-          ...action.payload,
-          user:action.payload,
+          user: action.payload,
           isAuthenticated: true,
           loading: false
         };
@@ -39,13 +47,22 @@ import {
           isAuthenticated: false,
           loading: false,
           user: null,
-          error: action.payload
+          hotels: [],
+          error: null
+        };
+
+      case ADD_HOTELS:
+          return {
+            ...state,
+            hotels: action.payload,
+            loading: false
         };
       case CLEAR_ERRORS:
         return {
           ...state,
           error: null
         };
+      
       default:
         return state;
     }
