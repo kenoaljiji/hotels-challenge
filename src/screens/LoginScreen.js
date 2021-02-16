@@ -55,7 +55,7 @@ const LoginScreen = (props) => {
         return (
             <div className='form-container'>
               <h1>
-            <span className='text-primary'> Sing In</span>
+            <span className='text-primary'> Sign In</span>
               </h1>
               <form onSubmit={onSubmit}>
                 <div className='form-group'>
@@ -81,7 +81,7 @@ const LoginScreen = (props) => {
                   />
                 </div>
                 <div className='form-group'>
-                    <Link to='/register'>Sing Up</Link>
+                    <Link to='/register'>Sign Up</Link>
                 </div>
                 <Button className='btn btn-primary btn-block' type='submit' value='login'>
                     Login

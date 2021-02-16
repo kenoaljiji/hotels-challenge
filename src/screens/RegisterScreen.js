@@ -67,7 +67,7 @@ const RegisterScreen = (props) => {
     return (
         <div className='form-container'>
           <h1>
-            <span className='text-primary'>Sing Up</span>
+            <span className='text-primary'>Sign Up</span>
           </h1>
           <form onSubmit={onSubmit}>
             <div className='form-group'>
@@ -139,7 +139,7 @@ const RegisterScreen = (props) => {
               />
             </div>
             <div className='form-group'>
-                <Link to='/'>Sing In</Link>
+                <Link to='/'>Sign In</Link>
             </div>
             <button
               type='submit'
